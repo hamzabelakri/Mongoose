@@ -2,18 +2,16 @@ const mongoose = require("mongoose");
 const express = require("express");
 const Person = require("./Models/person");
 const app = express();
-const port = 5000;
 
-mongoose.connect(url, () => {
+require('dotenv').config()
+mongoose.connect(process.env.URL, () => {
   console.log("connected successfully");
 });
-app.listen(port, () => {
-  console.log(`the server is running`)
-}).catch(() => {
-console.log(`the server is failed`);
-});
+app.listen(process.env.PORT, (e) => {
+ e? console.log(`failed`):console.log('sucess')
+})
 
-Person.create([
+/* Person.create([
     {
         name:"Samir",
         age:34,
@@ -47,7 +45,7 @@ Person.create([
 
     Person.findOne({ favoriteFoods: "favFood3" })
         .then((data) => {
-          console.log('${data} is found' );
+          console.log(`${data} is found `);
         })
         .catch((error) => {
           console.log('not found')
@@ -62,8 +60,7 @@ Person.create([
     }
   ).then((data) => {
     console.log('data has been changed');
-});
-
-Person.remove().then(()=>{
+}); */
+/*  Person.remove().then(()=>{
     console.log('All documents are deleted successfully')
-  })
+  })  */
